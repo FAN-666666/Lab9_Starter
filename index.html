@@ -86,7 +86,16 @@
       <button>Trigger a Global Error</button>
     </section>
   </main>
-
+  
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    // Step 5 - The Global Error handler and 3rd Party Tracking
+    window.TrackJS && TrackJS.install({ 
+      token: "6e150b1502944cd18940f15a5817bb8b"
+      
+    });
+  </script>
+                        
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -102,7 +111,12 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
-  
+    
+    // Step 5 - The Global Error handler and 3rd Party Tracking
+    window.onerror = function (errorMsg, url, lineNumber) {
+          console.log(errorMsg + " - Global Error handler Demo");
+      }
+    
     // Step 2 - Adding Buttons for Console Testing
     for (let i = 0;i<errorBtns.length;i++){
       errorBtns[i].addEventListener("click", e => {
@@ -137,16 +151,17 @@
             }
             level1();
             break;
-          case "Trigger a Global Error": console.log(15); break;
+          case "Trigger a Global Error": abc(); break;
         }
       });
     }
-
+    
+    
     // Step 3 - Trying Try/Catch
     try {
       NotDefinedFunction();
     } catch (err) {
-      console.error(err);
+      TrackJS.track("Function is not defined");
     } finally{
       console.log("try-catch-finally Demo");
     }
@@ -163,23 +178,17 @@
       let x = 1;
       let y = 0;
       if(y==0){
-        throw new DividedByZeroError("Diviede by Zero");
+        throw new DividedByZeroError("Divided by Zero");
       }else{
         let z = x/y;
       }
     } catch (err) {
-      console.error(err.message);
+      TrackJS.track(err.name);
     } finally{
       console.log("Throw and Custom Errors Demo");
     }
 
-    // Step 5 - The Global Error handler and 3rd Party Tracking
-    if (window.onerror){
-        var error = window.onerror;
-        //console.log(error);
-      }else{
-        let j = 0;
-      }
+    
 
 
     
