@@ -159,9 +159,11 @@
     
     // Step 3 - Trying Try/Catch
     try {
-      NotDefinedFunction();
+      let list = [1,2]
+      console.log(list[4]);
     } catch (err) {
-      TrackJS.track("Function is not defined");
+      throw err;
+      TrackJS.track("Index out of bounds");
     } finally{
       console.log("try-catch-finally Demo");
     }
