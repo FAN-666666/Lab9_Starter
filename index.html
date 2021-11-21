@@ -163,8 +163,10 @@
       let ind = 5
       if (ind >= list.length){
         throw new SyntaxError("index cannot be greater or equal to array length");
+      }else{
+        console.log(list[ind]);
       }
-      console.log(list[4]);
+      
     } catch (err) {   
       TrackJS.track(err.message);
     } finally{
