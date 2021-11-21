@@ -160,10 +160,13 @@
     // Step 3 - Trying Try/Catch
     try {
       let list = [1,2]
+      let ind = 5
+      if (ind >= list.length){
+        throw new SyntaxError("index cannot be greater or equal to array length");
+      }
       console.log(list[4]);
-    } catch (err) {
-      throw err;
-      TrackJS.track("Index out of bounds");
+    } catch (err) {   
+      TrackJS.track(err.message);
     } finally{
       console.log("try-catch-finally Demo");
     }
